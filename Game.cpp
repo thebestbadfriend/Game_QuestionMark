@@ -79,6 +79,10 @@ void Game::HandleEvents()
 
 void Game::UpdateFrame()
 {
+	frame++;
+	dstRect.h = 800;
+	dstRect.w = 600;
+	dstRect.x = frame;
 	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 }
 
@@ -86,11 +90,8 @@ void Game::UpdateFrame()
 bool texRendered = false; //test code. Take it out when you're freaking done.
 void Game::RenderFrame()
 {
-	SDL_Rect dstRect;
-	dstRect.h = 800;
-	dstRect.w = 600;
 	SDL_RenderClear(renderer);
-	if (SDL_RenderCopy(renderer, playerTexture, NULL, NULL) != 0) {
+	if (SDL_RenderCopy(renderer, playerTexture, NULL, &dstRect) != 0) {
 		printf("Player texture could not render! SDL_Error: %s\n", SDL_GetError());
 	}
 	else {

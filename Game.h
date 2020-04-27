@@ -23,4 +23,6 @@ private:
 	SDL_Renderer* renderer = nullptr;
 
 	SDL_Texture* playerTexture = nullptr;
+	SDL_Rect dstRect;
+	int frame = 0;
 };
