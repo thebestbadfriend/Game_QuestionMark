@@ -1,5 +1,6 @@
-#include "..\Header Files\Game.h"
 #include <stdio.h>
+#include "..\Header Files\Game.h"
+#include "..\Header Files\TextureManager.h"
 
 Game::Game()
 {
@@ -41,18 +42,10 @@ void Game::Init(const char* title, int x, int y, int width, int height, bool ful
 			printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
 
-		SDL_Surface* tmpSurface = IMG_Load("Images\\thanos.png");
-		if (tmpSurface) {
-			playerTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-			SDL_FreeSurface(tmpSurface);
-			if (!playerTexture) {
-				initSucceeded = false;
-				printf("playerTexture could not initialize! SDL_Error: %s\n", SDL_GetError());
-			}
-		}
-		else {
+		playerTexture = TextureManager::LoadTexture(renderer, "Images\\thanos.png");
+		if(!playerTexture) {
 			initSucceeded = false;
-			printf("tmpSurface could not be created! IMG_Error: %s\n", IMG_GetError());
+			printf("playerTexture could not be created! IMG_Error: %s\n", IMG_GetError());
 		}
 	}
 	else {
@@ -86,20 +79,14 @@ void Game::UpdateFrame()
 	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 }
 
-
-bool texRendered = false; //test code. Take it out when you're freaking done.
 void Game::RenderFrame()
 {
 	SDL_RenderClear(renderer);
+
 	if (SDL_RenderCopy(renderer, playerTexture, NULL, &dstRect) != 0) {
 		printf("Player texture could not render! SDL_Error: %s\n", SDL_GetError());
 	}
-	else {
-		if (!texRendered) {
-			printf("Player texture rendered successfully!");
-		}
-		texRendered = true;//the only other texRendered line. Delte it when you delete the other, obviously
-	}
+
 	SDL_RenderPresent(renderer);
 }
 

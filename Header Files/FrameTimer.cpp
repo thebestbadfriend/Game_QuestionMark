@@ -21,9 +21,15 @@ void FrameTimer::Mark()
 	last = newTime;
 }
 
+int count = 0;
 bool FrameTimer::Step()
 {
 	if (accumulated >= threshold) {
+		count++;
+		if (count >= framerate) {
+			printf("second\n");
+			count = 0;
+		}
 		accumulated -= threshold;
 		return true;
 	}

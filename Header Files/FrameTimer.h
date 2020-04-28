@@ -11,7 +11,7 @@ public:
 
 private:
 	std::chrono::steady_clock::time_point last;
-	int framerate = 64;
+	int framerate = 1028;
 	float threshold = 1/float(framerate);
 	float accumulated = 0;
 };
