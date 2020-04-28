@@ -1,8 +1,10 @@
-#include "Game.h"
+#include "..\Header Files\Game.h"
 #include <stdio.h>
 
 Game::Game()
 {
+	dstRect.w = 800;
+	dstRect.h = 600;
 }
 
 Game::~Game()
@@ -39,7 +41,7 @@ void Game::Init(const char* title, int x, int y, int width, int height, bool ful
 			printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
 
-		SDL_Surface* tmpSurface = IMG_Load("thanos.png");
+		SDL_Surface* tmpSurface = IMG_Load("Images\\thanos.png");
 		if (tmpSurface) {
 			playerTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
@@ -80,8 +82,6 @@ void Game::HandleEvents()
 void Game::UpdateFrame()
 {
 	frame++;
-	dstRect.h = 800;
-	dstRect.w = 600;
 	dstRect.x = frame;
 	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 }

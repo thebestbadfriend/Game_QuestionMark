@@ -1,17 +1,21 @@
 #include <iostream>
-#include "Game.h"
+#include "..\Header Files\Game.h"
+#include "..\Header Files\FrameTimer.h"
 
 Game game;
-
 
 
 int main(int argc, char* argv[])
 {
 	game.Init("My Game?", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1600, 900, false);
+	FrameTimer ft;
 
 	while (/*game is running*/ true) {
+		ft.Mark();
 		game.HandleEvents();
-		game.UpdateFrame();
+		if (ft.Step()) {
+			game.UpdateFrame();
+		}
 		game.RenderFrame();
 		//game.CleanupFrame(); //maybe?
 	}
