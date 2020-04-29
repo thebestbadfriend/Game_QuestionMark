@@ -4,14 +4,9 @@
 class FrameTimer {
 public:
 	FrameTimer();
-	~FrameTimer();
 
-	void Mark(); //adds the time since the last call to Mark() to the timer
-	bool Step(); //returns true if it is time to go to the next frame and subtracts the threshold from the timer
+	float Mark(); //returns the time in seconds since the last call to mark
 
 private:
 	std::chrono::steady_clock::time_point last;
-	int framerate = 1028;
-	float threshold = 1/float(framerate);
-	float accumulated = 0;
 };

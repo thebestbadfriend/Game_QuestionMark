@@ -72,10 +72,10 @@ void Game::HandleEvents()
 	}
 }
 
-void Game::UpdateFrame()
+void Game::UpdateFrame(float deltaTime)
 {
-	frame++;
-	dstRect.x = frame;
+	frame += deltaTime * pixelsPerSecond;
+	dstRect.x = int(frame);
 	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 }
 

@@ -8,32 +8,10 @@ FrameTimer::FrameTimer()
 {
 }
 
-FrameTimer::~FrameTimer()
+float FrameTimer::Mark()
 {
-}
-
-void FrameTimer::Mark()
-{
-	auto newTime = steady_clock::now();
-	std::chrono::duration<float> duration = newTime - last;
-	
-	accumulated += duration.count();
-	last = newTime;
-}
-
-int count = 0;
-bool FrameTimer::Step()
-{
-	if (accumulated >= threshold) {
-		count++;
-		if (count >= framerate) {
-			printf("second\n");
-			count = 0;
-		}
-		accumulated -= threshold;
-		return true;
-	}
-	else {
-		return false;
-	}
+	auto old = last;
+	last = steady_clock::now();
+	const duration<float> duration = last - old;
+	return duration.count();
 }

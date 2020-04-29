@@ -11,11 +11,9 @@ int main(int argc, char* argv[])
 	FrameTimer ft;
 
 	while (/*game is running*/ true) {
-		ft.Mark();
+		float deltaTime = ft.Mark();
 		game.HandleEvents();
-		if (ft.Step()) {
-			game.UpdateFrame();
-		}
+		game.UpdateFrame(deltaTime);
 		game.RenderFrame();
 		//game.CleanupFrame(); //maybe?
 	}

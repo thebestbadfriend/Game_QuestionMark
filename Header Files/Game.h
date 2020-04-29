@@ -9,7 +9,7 @@ public:
 
 	void Init(const char* title, int x, int y, int width, int height, bool fullscreen);
 	void HandleEvents();
-	void UpdateFrame();
+	void UpdateFrame(float deltaTime);
 	void RenderFrame();
 	//void CleanupFrame(); //maybe?
 	void CleanupGame();
@@ -24,5 +24,6 @@ private:
 
 	SDL_Texture* playerTexture = nullptr;
 	SDL_Rect dstRect;
-	int frame = 0;
+	float frame = 0;
+	int pixelsPerSecond = 3200;
 };
