@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include "GameObject.h"
 
 class Game {
 public:
@@ -21,9 +22,5 @@ private:
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
-
-	SDL_Texture* playerTexture = nullptr;
-	SDL_Rect dstRect;
-	float frame = 0;
-	int pixelsPerSecond = 3200;
+	GameObject player;
 };
