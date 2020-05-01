@@ -67,8 +67,7 @@ void Game::HandleEvents()
 
 void Game::UpdateFrame(float deltaTime)
 {
-	//frame += deltaTime * pixelsPerSecond;
-	//dstRect.x = int(frame);
+	player.Update(deltaTime);
 	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 }
 
