@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "..\Header Files\Game.h"
 
+SDL_Renderer* Game::renderer = nullptr;
+
 Game::Game()
 {
 }
@@ -39,7 +41,7 @@ void Game::Init(const char* title, int x, int y, int width, int height, bool ful
 			printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
 
-		player = GameObject(renderer, "Images\\thanos.png");
+		player = GameObject("Images\\thanos.png");
 	}
 	else {
 		initSucceeded = false;

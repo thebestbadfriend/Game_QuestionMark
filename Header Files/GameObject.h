@@ -1,11 +1,12 @@
 #pragma once
+#include <SDL.h>
+#include <SDL_image.h>
 #include "Vec2.h"
-#include "TextureManager.h"
 
 class GameObject {
 public:
 	GameObject() = default;
-	GameObject(SDL_Renderer* in_renderer, const char* in_filepath);
+	GameObject(const char* in_filepath);
 	//~GameObject();
 
 	void Update(float deltaTime);
@@ -14,7 +15,6 @@ public:
 private:
 	Vec2 location;
 	SDL_Texture* texture;
-	SDL_Renderer* renderer;
 	SDL_Rect dstRect;
 
 	int pixelsPerSecond = 200;

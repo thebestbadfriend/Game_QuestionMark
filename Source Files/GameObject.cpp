@@ -1,11 +1,11 @@
 #include "..\Header Files\GameObject.h"
+#include "..\Header Files\TextureManager.h"
 
-GameObject::GameObject(SDL_Renderer* in_renderer, const char* in_filepath)
+GameObject::GameObject(const char* in_filepath)
 	:
-	renderer(in_renderer),
 	location(Vec2(0, 0))
 {
-	texture = TextureManager::LoadTexture(in_renderer, in_filepath);
+	texture = TextureManager::LoadTexture(in_filepath);
 	dstRect.x = int(location.x);
 	dstRect.y = int(location.y);
 	dstRect.w = 800;
@@ -23,5 +23,5 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Render()
 {
-	SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+	SDL_RenderCopy(Game::renderer, texture, NULL, &dstRect);
 }
