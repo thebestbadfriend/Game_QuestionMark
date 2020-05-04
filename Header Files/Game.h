@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "GameObject.h"
+#include "Map.h"
 
 class Game {
 public:
@@ -26,4 +27,5 @@ private:
 
 	SDL_Window* window = nullptr;
 	GameObject player;
+	Map map;
 };

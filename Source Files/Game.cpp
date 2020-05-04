@@ -42,6 +42,7 @@ void Game::Init(const char* title, int x, int y, int width, int height, bool ful
 		}
 
 		player = GameObject("Images\\thanos.png");
+		map = Map();
 	}
 	else {
 		initSucceeded = false;
@@ -70,13 +71,14 @@ void Game::HandleEvents()
 void Game::UpdateFrame(float deltaTime)
 {
 	player.Update(deltaTime);
-	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+	//SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 }
 
 void Game::RenderFrame()
 {
 	SDL_RenderClear(renderer);
 
+	map.DrawMap();
 	player.Render();
 
 	SDL_RenderPresent(renderer);

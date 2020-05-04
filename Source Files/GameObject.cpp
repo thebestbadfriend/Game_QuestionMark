@@ -23,5 +23,6 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Render()
 {
-	SDL_RenderCopy(Game::renderer, texture, NULL, &dstRect);
+	//SDL_RenderCopy(Game::renderer, texture, NULL, &dstRect);
+	TextureManager::Draw(texture, NULL, &dstRect);
 }
